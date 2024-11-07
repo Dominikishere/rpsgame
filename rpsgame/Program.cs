@@ -143,12 +143,13 @@ namespace rpsgame
                         break;
                     case "exit":
                         Console.Clear();
-                        Console.WriteLine("Exiting...");
+                        Console.WriteLine("Exiting in 5 seconds...");
                         Console.WriteLine();
                         Console.WriteLine($"Computer wins: {pcwin}");
                         Console.WriteLine($"Your wins: {mywin}");
                         Console.WriteLine($"Ties: {ties}");
-                        Console.ReadLine();
+                        Thread.Sleep(5000);
+                        System.Environment.Exit(0);
                         run = false;
                         break;
                     default:
@@ -275,12 +276,13 @@ namespace rpsgame
                         break;
                     case "kilépés":
                         Console.Clear();
-                        Console.WriteLine("Kilépés...");
+                        Console.WriteLine("Kilépés 5 másodperc múlva...");
                         Console.WriteLine();
                         Console.WriteLine($"A gép ennyiszer nyert: {pcwin}");
                         Console.WriteLine($"Te ennyiszer nyertél: {mywin}");
                         Console.WriteLine($"Döntetlenek: {ties}");
-                        Console.ReadLine();
+                        Thread.Sleep(5000);
+                        System.Environment.Exit(0);
                         run = false;
                         break;
                     default:
