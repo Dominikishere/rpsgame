@@ -15,6 +15,7 @@ namespace rpsgame
                 Console.WriteLine("1. Rock");
                 Console.WriteLine("2. Paper");
                 Console.WriteLine("3. Scissors");
+                Console.WriteLine("4. Exit");
                 Console.WriteLine();
                 Console.Write("Please select an option (you can also write out the word): ");
                 string option = Console.ReadLine();
@@ -84,6 +85,11 @@ namespace rpsgame
                             Console.WriteLine("you won!");
                             Console.WriteLine();
                         }
+                        break;
+                    case "exit":
+                        Console.Clear();
+                        Console.WriteLine("Exiting...");
+                        run = false;
                         break;
                     default:
                         Console.Clear();
