@@ -9,6 +9,9 @@ namespace rpsgame
             bool run = true;
             List<string> rpslist = new List<string>{"rock", "paper", "scissors","Exit"};
             Random randomnumber = new Random();
+            int pcwin = 0;
+            int mywin = 0;
+            int ties = 0;
 
             while (run)
             {
@@ -44,16 +47,19 @@ namespace rpsgame
                             Console.WriteLine("Computer's choice is... rock");
                             Console.WriteLine("Tie!");
                             Console.WriteLine();
+                            ties++;
                         } else if (rpslist[choice] == "paper")
                         {
                             Console.WriteLine("Computer's choice is... paper");
                             Console.WriteLine("Computer won!");
                             Console.WriteLine();
+                            pcwin++;
                         } else
                         {
                             Console.WriteLine("Computer's choice is... scissors");
                             Console.WriteLine("You won!");
                             Console.WriteLine();
+                            mywin++;
                         }
                         break;
                     case "paper":
@@ -64,17 +70,20 @@ namespace rpsgame
                             Console.WriteLine("Computer's choice is... paper");
                             Console.WriteLine("Tie!");
                             Console.WriteLine();
+                            ties++;
                         } else if (rpslist[choice2] == "scissors")
                         {
                             Console.WriteLine("Computer's choice is... scissors");
                             Console.WriteLine("Computer won!");
                             Console.WriteLine();
+                            pcwin++;
                         }
                         else
                         {
                             Console.WriteLine("Computer's choice is... rock");
                             Console.WriteLine("You won!");
                             Console.WriteLine();
+                            mywin++;
                         }
                         break;
                     case "scissors":
@@ -85,23 +94,29 @@ namespace rpsgame
                             Console.WriteLine("Computer's choice is... scissors");
                             Console.WriteLine("Tie!");
                             Console.WriteLine();
+                            ties++;
                         }
                         else if (rpslist[choice3] == "rock")
                         {
                             Console.WriteLine("Computer's choice is... rock");
                             Console.WriteLine("Computer won!");
                             Console.WriteLine();
+                            pcwin++;
                         }
                         else
                         {
                             Console.WriteLine("Computer's choice is... paper");
                             Console.WriteLine("You won!");
                             Console.WriteLine();
+                            mywin++;
                         }
                         break;
                     case "exit":
                         Console.Clear();
                         Console.WriteLine("Exiting...");
+                        Console.WriteLine($"Computer wins: {pcwin}");
+                        Console.WriteLine($"Your wins: {mywin}");
+                        Console.WriteLine($"Ties: {ties}");
                         run = false;
                         break;
                     default:
