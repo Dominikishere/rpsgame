@@ -6,19 +6,28 @@ namespace rpsgame
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Welcome to Rock, Paper, Scissors!\n");
             Console.WriteLine("1. English");
             Console.WriteLine("2. Hungarian");
             Console.WriteLine();
             Console.Write("Please choose a language: ");
-            int selectedLang = int.Parse(Console.ReadLine());
+            string selectedLang = Console.ReadLine();
 
-            switch (selectedLang)
+            if (selectedLang == "1")
             {
-                case 1:
+                selectedLang = "english";
+            } else if (selectedLang == "2")
+            {
+                selectedLang = "hungarian";
+            } 
+
+            switch (selectedLang.ToLower())
+            {
+                case "english":
                     Console.Clear();
                     english();
                     break;
-                case 2:
+                case "hungarian":
                     Console.Clear();
                     hungarian();
                     break;
