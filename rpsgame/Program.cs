@@ -108,6 +108,7 @@ namespace rpsgame
                         Console.Clear();
                         Console.WriteLine("The computer couldn't understand the choice...");
                         Console.WriteLine();
+                        Console.ReadLine();
                         break;
                 }
             }
