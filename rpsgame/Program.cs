@@ -152,8 +152,7 @@ namespace rpsgame
                         break;
                     case "exit":
                         Console.Clear();
-                        Console.WriteLine("Exiting in 5 seconds...");
-                        Console.WriteLine();
+                        Console.WriteLine("Exiting in 5 seconds...\n");
                         Console.WriteLine($"Computer wins: {pcwin}");
                         Console.WriteLine($"Your wins: {mywin}");
                         Console.WriteLine($"Ties: {ties}");
@@ -285,7 +284,7 @@ namespace rpsgame
                         break;
                     case "kilépés":
                         Console.Clear();
-                        Console.WriteLine("Kilépés 5 másodperc múlva...");
+                        Console.WriteLine("Kilépés 5 másodperc múlva...\n");
                         Console.WriteLine();
                         Console.WriteLine($"A gép ennyiszer nyert: {pcwin}");
                         Console.WriteLine($"Te ennyiszer nyertél: {mywin}");
