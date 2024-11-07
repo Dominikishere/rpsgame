@@ -7,7 +7,7 @@ namespace rpsgame
         static void Main(string[] args)
         {
             bool run = true;
-            List<string> rpslist = new List<string>{"rock", "paper", "scissors"};
+            List<string> rpslist = new List<string>{"rock", "paper", "scissors","Exit"};
             Random randomnumber = new Random();
 
             while (run)
@@ -19,6 +19,20 @@ namespace rpsgame
                 Console.WriteLine();
                 Console.Write("Please select an option (you can also write out the word): ");
                 string option = Console.ReadLine();
+
+                if (option == "1")
+                {
+                    option = "rock";
+                } else if (option == "2")
+                {
+                    option = "paper";
+                } else if (option == "3")
+                {
+                    option = "scissors";
+                } else if (option == "4")
+                {
+                    option = "exit";
+                }
 
                 switch (option.ToLower())
                 {
@@ -38,7 +52,7 @@ namespace rpsgame
                         } else
                         {
                             Console.WriteLine("Computer's choice is... scissors");
-                            Console.WriteLine("you won!");
+                            Console.WriteLine("You won!");
                             Console.WriteLine();
                         }
                         break;
@@ -50,8 +64,7 @@ namespace rpsgame
                             Console.WriteLine("Computer's choice is... paper");
                             Console.WriteLine("Tie!");
                             Console.WriteLine();
-                        }
-                        else if (rpslist[choice2] == "scissors")
+                        } else if (rpslist[choice2] == "scissors")
                         {
                             Console.WriteLine("Computer's choice is... scissors");
                             Console.WriteLine("Computer won!");
@@ -60,7 +73,7 @@ namespace rpsgame
                         else
                         {
                             Console.WriteLine("Computer's choice is... rock");
-                            Console.WriteLine("you won!");
+                            Console.WriteLine("You won!");
                             Console.WriteLine();
                         }
                         break;
@@ -82,7 +95,7 @@ namespace rpsgame
                         else
                         {
                             Console.WriteLine("Computer's choice is... paper");
-                            Console.WriteLine("you won!");
+                            Console.WriteLine("You won!");
                             Console.WriteLine();
                         }
                         break;
