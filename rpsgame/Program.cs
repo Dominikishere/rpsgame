@@ -19,9 +19,16 @@ namespace rpsgame
                     english();
                 }
 
-            } else if (language == "hungarian")
+            } else if (language == "magyar")
             {
-                hungarian();
+                string wantToWagerHunAnswer = wantToWagerHun();
+                if (wantToWagerHunAnswer == "igen")
+                {
+                    hungarian(hunbalance: 500);
+                } else if (wantToWagerHunAnswer == "nem")
+                {
+                    hungarian();
+                }
             }
         }
         static string wantToWagerEng()
@@ -56,15 +63,43 @@ namespace rpsgame
                     return wantToWagerEng();
             }
         }
-        static void wantToWagerHun()
+        static string wantToWagerHun()
         {
+            Console.WriteLine("Szeretnél egyenleggel játszani? (5000 forinttal kezdesz, ha nyersz akkor az egyenleged növekszik)\n");
+            Console.WriteLine("1. Igen");
+            Console.WriteLine("2. Nem");
+            Console.WriteLine();
+            Console.Write("Kérlek adj meg egy választ: ");
+            string wantToWageranswer = Console.ReadLine();
 
+            if (wantToWageranswer == "1")
+            {
+                wantToWageranswer = "igen";
+            }
+            else if (wantToWageranswer == "2")
+            {
+                wantToWageranswer = "nem";
+            }
+
+            switch (wantToWageranswer)
+            {
+                case "igen":
+                    Console.Clear();
+                    return "igen";
+                case "nem":
+                    Console.Clear();
+                    return "nem";
+                default:
+                    Console.Clear();
+                    Console.WriteLine("The computer couldn't understand the choice...");
+                    return wantToWagerEng();
+            }
         }
         static string languageSelector()
         {
             Console.WriteLine("Welcome to Rock, Paper, Scissors!\nCURRENTLY WAGER IS ONLY AVAILABLE IN ENGLISH!\n");
             Console.WriteLine("1. English");
-            Console.WriteLine("2. Hungarian");
+            Console.WriteLine("2. Magyar");
             Console.WriteLine();
             Console.Write("Please choose a language: ");
             string selectedLang = Console.ReadLine();
@@ -75,7 +110,7 @@ namespace rpsgame
             }
             else if (selectedLang == "2")
             {
-                selectedLang = "hungarian";
+                selectedLang = "magyar";
             }
 
             switch (selectedLang.ToLower())
@@ -83,9 +118,9 @@ namespace rpsgame
                 case "english":
                     Console.Clear();
                     return "english";
-                case "hungarian":
+                case "magyar":
                     Console.Clear();
-                    return "hungarian";
+                    return "magyar";
                 default:
                     Console.Clear();
                     Console.WriteLine("The computer couldn't understand the choice...");
@@ -96,7 +131,7 @@ namespace rpsgame
         {
             bool run = true;
             bool wagerEnabling = engbalance > 0;
-            List<string> rpslist = new List<string> { "rock", "paper", "scissors", "Exit" };
+            List<string> rpslist = new List<string> { "rock", "paper", "scissors", "shop", "Exit" };
             Random randomnumber = new Random();
             int pcwin = 0;
             int mywin = 0;
@@ -110,7 +145,7 @@ namespace rpsgame
                 Console.WriteLine();
                 Console.WriteLine("4. Shop (SOON)");
                 Console.WriteLine("5. Exit");
-                if (engbalance != 0)
+                if (engbalance > 0)
                 {
                     Console.WriteLine($"Your current balance: {engbalance}$");
                 }
@@ -275,10 +310,11 @@ namespace rpsgame
 
             }
         }
-        static void hungarian()
+        static void hungarian(int hunbalance = 0)
         {
             bool run = true;
-            List<string> rpslist = new List<string> { "kő", "papír", "olló", "kilépés" };
+            bool wagerEnabling = hunbalance > 0; // nem teljesen működik
+            List<string> rpslist = new List<string> { "kő", "papír", "olló", "bolt", "kilépés" };
             Random randomnumber = new Random();
             int pcwin = 0;
             int mywin = 0;
@@ -289,8 +325,14 @@ namespace rpsgame
                 Console.WriteLine("1. Kő");
                 Console.WriteLine("2. Papír");
                 Console.WriteLine("3. Olló");
-                Console.WriteLine("4. Kilépés");
                 Console.WriteLine();
+                Console.WriteLine("4. Bolt");
+                Console.WriteLine("5. Kilépés");
+                Console.WriteLine();
+                if (hunbalance > 0)
+                {
+                    Console.WriteLine($"A jelenlegi egyenleged: {hunbalance}ft");
+                }
                 Console.Write("Kérlek válasz egy opciót (a szót is be lehet írni): ");
                 string option = Console.ReadLine();
 
@@ -308,7 +350,11 @@ namespace rpsgame
                 }
                 else if (option == "4")
                 {
-                    option = "Kilépés";
+                    option = "bolt";
+                }
+                else if (option == "5")
+                {
+                    option = "kilépés";
                 }
 
                 switch (option.ToLower())
@@ -327,6 +373,11 @@ namespace rpsgame
                         {
                             Console.WriteLine("A gép válasza... papír");
                             Console.WriteLine("A gép nyert!");
+                            if (wagerEnabling)
+                            {
+                                Console.WriteLine("Vesztettél 500 forintot!");
+                                hunbalance -= 500;
+                            }
                             Console.WriteLine();
                             pcwin++;
                         }
@@ -334,6 +385,11 @@ namespace rpsgame
                         {
                             Console.WriteLine("A gép válasza... olló");
                             Console.WriteLine("Te nyertél!");
+                            if (wagerEnabling)
+                            {
+                                Console.WriteLine("Nyertél 500 forintot!");
+                                hunbalance += 500;
+                            }
                             Console.WriteLine();
                             mywin++;
                         }
@@ -352,6 +408,11 @@ namespace rpsgame
                         {
                             Console.WriteLine("A gép válasza... olló");
                             Console.WriteLine("A gép nyert!");
+                            if (wagerEnabling)
+                            {
+                                Console.WriteLine("Vesztettél 500 forintot!");
+                                hunbalance -= 500;
+                            }
                             Console.WriteLine();
                             pcwin++;
                         }
@@ -359,6 +420,11 @@ namespace rpsgame
                         {
                             Console.WriteLine("A gép válasza... kő");
                             Console.WriteLine("Te nyertél!");
+                            if (wagerEnabling)
+                            {
+                                Console.WriteLine("Nyertél 500 forintot!");
+                                hunbalance += 500;
+                            }
                             Console.WriteLine();
                             mywin++;
                         }
@@ -377,6 +443,11 @@ namespace rpsgame
                         {
                             Console.WriteLine("A gép válasza... kő");
                             Console.WriteLine("A gép nyert!");
+                            if (wagerEnabling)
+                            {
+                                Console.WriteLine("Vesztettél 500 forintot!");
+                                hunbalance -= 500;
+                            }
                             Console.WriteLine();
                             pcwin++;
                         }
@@ -384,9 +455,20 @@ namespace rpsgame
                         {
                             Console.WriteLine("A gép válasza... papír");
                             Console.WriteLine("Te nyertél!");
+                            if (wagerEnabling)
+                            {
+                                Console.WriteLine("Nyertél 500 forintot!");
+                                hunbalance += 500;
+                            }
                             Console.WriteLine();
                             mywin++;
                         }
+                        break;
+                    case "bolt":
+                        Console.Clear();
+                        Console.WriteLine("A bolt fejlesztés alatt áll...");
+                        Thread.Sleep(1000);
+                        Console.Clear();
                         break;
                     case "kilépés":
                         Console.Clear();
