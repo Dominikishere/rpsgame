@@ -97,7 +97,7 @@ namespace rpsgame
         }
         static string languageSelector()
         {
-            Console.WriteLine("Welcome to Rock, Paper, Scissors!\nCURRENTLY WAGER IS ONLY AVAILABLE IN ENGLISH!\n");
+            Console.WriteLine("Welcome to Rock, Paper, Scissors!\n");
             Console.WriteLine("1. English");
             Console.WriteLine("2. Magyar");
             Console.WriteLine();
