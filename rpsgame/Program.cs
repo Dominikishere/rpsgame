@@ -6,6 +6,62 @@ namespace rpsgame
     {
         static void Main(string[] args)
         {
+            string language = languageSelector();
+
+            if (language == "english")
+            {
+                string wantToWagerEngAnswer = wantToWagerEng();
+                if (wantToWagerEngAnswer == "yes")
+                {
+                    english(engbalance: 100);
+                } else if (wantToWagerEngAnswer == "no")
+                {
+                    english();
+                }
+
+            } else if (language == "hungarian")
+            {
+                hungarian();
+            }
+        }
+        static string wantToWagerEng()
+        {
+            Console.WriteLine("Do you want to play with money balance? (you start with 100$ and you win money by winning against the machine)\nCURRENTLY WAGER IS ONLY AVAILABLE IN ENGLISH!\n");
+            Console.WriteLine("1. Yes");
+            Console.WriteLine("2. No");
+            Console.WriteLine();
+            Console.Write("Please write your answer: ");
+            string wantToWageranswer = Console.ReadLine();
+
+            if (wantToWageranswer == "1")
+            {
+                wantToWageranswer = "yes";
+            }
+            else if (wantToWageranswer == "2")
+            {
+                wantToWageranswer = "no";
+            }
+
+            switch (wantToWageranswer)
+            {
+                case "yes": 
+                    Console.Clear();
+                    return "yes";
+                case "no":
+                    Console.Clear();
+                    return "no";
+                default:
+                    Console.Clear();
+                    Console.WriteLine("The computer couldn't understand the choice...");
+                    return wantToWagerEng();
+            }
+        }
+        static void wantToWagerHun()
+        {
+
+        }
+        static string languageSelector()
+        {
             Console.WriteLine("Welcome to Rock, Paper, Scissors!\n");
             Console.WriteLine("1. English");
             Console.WriteLine("2. Hungarian");
@@ -16,30 +72,30 @@ namespace rpsgame
             if (selectedLang == "1")
             {
                 selectedLang = "english";
-            } else if (selectedLang == "2")
+            }
+            else if (selectedLang == "2")
             {
                 selectedLang = "hungarian";
-            } 
+            }
 
             switch (selectedLang.ToLower())
             {
                 case "english":
                     Console.Clear();
-                    english();
-                    break;
+                    return "english";
                 case "hungarian":
                     Console.Clear();
-                    hungarian();
-                    break;
+                    return "hungarian";
                 default:
                     Console.Clear();
                     Console.WriteLine("The computer couldn't understand the choice...");
-                    break;
+                    return languageSelector();
             }
         }
-        static void english()
+        static void english(int engbalance = 0)
         {
             bool run = true;
+            bool wagerEnabling = engbalance > 0;
             List<string> rpslist = new List<string> { "rock", "paper", "scissors", "Exit" };
             Random randomnumber = new Random();
             int pcwin = 0;
@@ -52,6 +108,10 @@ namespace rpsgame
                 Console.WriteLine("2. Paper");
                 Console.WriteLine("3. Scissors");
                 Console.WriteLine("4. Exit");
+                if (engbalance != 0)
+                {
+                    Console.WriteLine($"Your current balance: {engbalance}$");
+                }
                 Console.WriteLine();
                 Console.Write("Please select an option (you can also write out the word): ");
                 string option = Console.ReadLine();
@@ -89,13 +149,25 @@ namespace rpsgame
                         {
                             Console.WriteLine("Computer's choice is... paper");
                             Console.WriteLine("Computer won!");
+                            if (wagerEnabling)
+                            {
+                                engbalance -= 10;
+                                Console.WriteLine("You lost 10$!");
+                            }                         
                             Console.WriteLine();
                             pcwin++;
+                            
+
                         }
                         else
                         {
                             Console.WriteLine("Computer's choice is... scissors");
                             Console.WriteLine("You won!");
+                            if (wagerEnabling)
+                            {
+                                engbalance += 10;
+                                Console.WriteLine("You won 10$!");
+                            }
                             Console.WriteLine();
                             mywin++;
                         }
@@ -114,6 +186,11 @@ namespace rpsgame
                         {
                             Console.WriteLine("Computer's choice is... scissors");
                             Console.WriteLine("Computer won!");
+                            if (wagerEnabling)
+                            {
+                                engbalance -= 10;
+                                Console.WriteLine("You lost 10$!");
+                            }
                             Console.WriteLine();
                             pcwin++;
                         }
@@ -121,8 +198,14 @@ namespace rpsgame
                         {
                             Console.WriteLine("Computer's choice is... rock");
                             Console.WriteLine("You won!");
+                            if (wagerEnabling)
+                            {
+                                engbalance += 10;
+                                Console.WriteLine("You won 10$!");
+                            }
                             Console.WriteLine();
                             mywin++;
+
                         }
                         break;
                     case "scissors":
@@ -139,13 +222,24 @@ namespace rpsgame
                         {
                             Console.WriteLine("Computer's choice is... rock");
                             Console.WriteLine("Computer won!");
+                            if (wagerEnabling)
+                            {
+                                engbalance -= 10;
+                                Console.WriteLine("You lost 10$!");
+                            }
                             Console.WriteLine();
                             pcwin++;
+
                         }
                         else
                         {
                             Console.WriteLine("Computer's choice is... paper");
                             Console.WriteLine("You won!");
+                            if (wagerEnabling)
+                            {
+                                engbalance += 10;
+                                Console.WriteLine("You won 10$!");
+                            }
                             Console.WriteLine();
                             mywin++;
                         }
