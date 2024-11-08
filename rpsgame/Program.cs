@@ -24,7 +24,7 @@ namespace rpsgame
                 string wantToWagerHunAnswer = wantToWagerHun();
                 if (wantToWagerHunAnswer == "igen")
                 {
-                    hungarian(hunbalance: 500);
+                    hungarian(hunbalance: 5000);
                 } else if (wantToWagerHunAnswer == "nem")
                 {
                     hungarian();
