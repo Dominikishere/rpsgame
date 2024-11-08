@@ -344,7 +344,7 @@ namespace rpsgame
                     Console.WriteLine("2. Papír");
                     Console.WriteLine("3. Olló");
                     Console.WriteLine();
-                    Console.WriteLine("4. Bolt");
+                    Console.WriteLine("4. Bolt (Hamarosan)");
                     Console.WriteLine("5. Kilépés");
                     Console.WriteLine();
                     if (hunbalance > 0)
