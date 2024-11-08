@@ -92,7 +92,7 @@ namespace rpsgame
                 default:
                     Console.Clear();
                     Console.WriteLine("The computer couldn't understand the choice...");
-                    return wantToWagerEng();
+                    return wantToWagerHun();
             }
         }
         static string languageSelector()
@@ -139,181 +139,191 @@ namespace rpsgame
 
             while (run)
             {
-                Console.WriteLine("1. Rock");
-                Console.WriteLine("2. Paper");
-                Console.WriteLine("3. Scissors");
-                Console.WriteLine();
-                Console.WriteLine("4. Shop (SOON)");
-                Console.WriteLine("5. Exit");
-                if (engbalance > 0)
+                if (wagerEnabling && engbalance <= 0)
                 {
-                    Console.WriteLine($"Your current balance: {engbalance}$");
-                }
-                Console.WriteLine();
-                Console.Write("Please select an option (you can also write out the word): ");
-                string option = Console.ReadLine();
+                    Console.Clear();
+                    Console.WriteLine("You ran out of money! Game over!");
+                    Thread.Sleep(3000);
+                    System.Environment.Exit(0);
+                } else
+                {
+                    Console.WriteLine("1. Rock");
+                    Console.WriteLine("2. Paper");
+                    Console.WriteLine("3. Scissors");
+                    Console.WriteLine();
+                    Console.WriteLine("4. Shop (SOON)");
+                    Console.WriteLine("5. Exit");
+                    if (engbalance > 0)
+                    {
+                        Console.WriteLine($"Your current balance: {engbalance}$");
+                    }
+                    Console.WriteLine();
+                    Console.Write("Please select an option (you can also write out the word): ");
+                    string option = Console.ReadLine();
 
-                if (option == "1")
-                {
-                    option = "rock";
-                }
-                else if (option == "2")
-                {
-                    option = "paper";
-                }
-                else if (option == "3")
-                {
-                    option = "scissors";
-                }
-                else if (option == "4")
-                {
-                    option = "shop";
-                }
-                else if (option == "5")
-                {
-                    option = "exit";
-                }
+                    if (option == "1")
+                    {
+                        option = "rock";
+                    }
+                    else if (option == "2")
+                    {
+                        option = "paper";
+                    }
+                    else if (option == "3")
+                    {
+                        option = "scissors";
+                    }
+                    else if (option == "4")
+                    {
+                        option = "shop";
+                    }
+                    else if (option == "5")
+                    {
+                        option = "exit";
+                    }
 
-                switch (option.ToLower())
-                {
-                    case "rock":
-                        Console.Clear();
-                        int choice = randomnumber.Next(0, 3);
-                        if (option == rpslist[choice])
-                        {
-                            Console.WriteLine("Computer's choice is... rock");
-                            Console.WriteLine("Tie!");
-                            Console.WriteLine();
-                            ties++;
-                        }
-                        else if (rpslist[choice] == "paper")
-                        {
-                            Console.WriteLine("Computer's choice is... paper");
-                            Console.WriteLine("Computer won!");
-                            if (wagerEnabling)
+                    switch (option.ToLower())
+                    {
+                        case "rock":
+                            Console.Clear();
+                            int choice = randomnumber.Next(0, 3);
+                            if (option == rpslist[choice])
                             {
-                                engbalance -= 10;
-                                Console.WriteLine("You lost 10$!");
-                            }                         
-                            Console.WriteLine();
-                            pcwin++;
-                            
+                                Console.WriteLine("Computer's choice is... rock");
+                                Console.WriteLine("Tie!");
+                                Console.WriteLine();
+                                ties++;
+                            }
+                            else if (rpslist[choice] == "paper")
+                            {
+                                Console.WriteLine("Computer's choice is... paper");
+                                Console.WriteLine("Computer won!");
+                                if (wagerEnabling)
+                                {
+                                    engbalance -= 10;
+                                    Console.WriteLine("You lost 10$!");
+                                }
+                                Console.WriteLine();
+                                pcwin++;
 
-                        }
-                        else
-                        {
-                            Console.WriteLine("Computer's choice is... scissors");
-                            Console.WriteLine("You won!");
-                            if (wagerEnabling)
-                            {
-                                engbalance += 10;
-                                Console.WriteLine("You won 10$!");
-                            }
-                            Console.WriteLine();
-                            mywin++;
-                        }
-                        break;
-                    case "paper":
-                        Console.Clear();
-                        int choice2 = randomnumber.Next(0, 3);
-                        if (option == rpslist[choice2])
-                        {
-                            Console.WriteLine("Computer's choice is... paper");
-                            Console.WriteLine("Tie!");
-                            Console.WriteLine();
-                            ties++;
-                        }
-                        else if (rpslist[choice2] == "scissors")
-                        {
-                            Console.WriteLine("Computer's choice is... scissors");
-                            Console.WriteLine("Computer won!");
-                            if (wagerEnabling)
-                            {
-                                engbalance -= 10;
-                                Console.WriteLine("You lost 10$!");
-                            }
-                            Console.WriteLine();
-                            pcwin++;
-                        }
-                        else
-                        {
-                            Console.WriteLine("Computer's choice is... rock");
-                            Console.WriteLine("You won!");
-                            if (wagerEnabling)
-                            {
-                                engbalance += 10;
-                                Console.WriteLine("You won 10$!");
-                            }
-                            Console.WriteLine();
-                            mywin++;
 
-                        }
-                        break;
-                    case "scissors":
-                        Console.Clear();
-                        int choice3 = randomnumber.Next(0, 3);
-                        if (option == rpslist[choice3])
-                        {
-                            Console.WriteLine("Computer's choice is... scissors");
-                            Console.WriteLine("Tie!");
-                            Console.WriteLine();
-                            ties++;
-                        }
-                        else if (rpslist[choice3] == "rock")
-                        {
-                            Console.WriteLine("Computer's choice is... rock");
-                            Console.WriteLine("Computer won!");
-                            if (wagerEnabling)
-                            {
-                                engbalance -= 10;
-                                Console.WriteLine("You lost 10$!");
                             }
-                            Console.WriteLine();
-                            pcwin++;
+                            else
+                            {
+                                Console.WriteLine("Computer's choice is... scissors");
+                                Console.WriteLine("You won!");
+                                if (wagerEnabling)
+                                {
+                                    engbalance += 10;
+                                    Console.WriteLine("You won 10$!");
+                                }
+                                Console.WriteLine();
+                                mywin++;
+                            }
+                            break;
+                        case "paper":
+                            Console.Clear();
+                            int choice2 = randomnumber.Next(0, 3);
+                            if (option == rpslist[choice2])
+                            {
+                                Console.WriteLine("Computer's choice is... paper");
+                                Console.WriteLine("Tie!");
+                                Console.WriteLine();
+                                ties++;
+                            }
+                            else if (rpslist[choice2] == "scissors")
+                            {
+                                Console.WriteLine("Computer's choice is... scissors");
+                                Console.WriteLine("Computer won!");
+                                if (wagerEnabling)
+                                {
+                                    engbalance -= 10;
+                                    Console.WriteLine("You lost 10$!");
+                                }
+                                Console.WriteLine();
+                                pcwin++;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Computer's choice is... rock");
+                                Console.WriteLine("You won!");
+                                if (wagerEnabling)
+                                {
+                                    engbalance += 10;
+                                    Console.WriteLine("You won 10$!");
+                                }
+                                Console.WriteLine();
+                                mywin++;
 
-                        }
-                        else
-                        {
-                            Console.WriteLine("Computer's choice is... paper");
-                            Console.WriteLine("You won!");
-                            if (wagerEnabling)
-                            {
-                                engbalance += 10;
-                                Console.WriteLine("You won 10$!");
                             }
+                            break;
+                        case "scissors":
+                            Console.Clear();
+                            int choice3 = randomnumber.Next(0, 3);
+                            if (option == rpslist[choice3])
+                            {
+                                Console.WriteLine("Computer's choice is... scissors");
+                                Console.WriteLine("Tie!");
+                                Console.WriteLine();
+                                ties++;
+                            }
+                            else if (rpslist[choice3] == "rock")
+                            {
+                                Console.WriteLine("Computer's choice is... rock");
+                                Console.WriteLine("Computer won!");
+                                if (wagerEnabling)
+                                {
+                                    engbalance -= 10;
+                                    Console.WriteLine("You lost 10$!");
+                                }
+                                Console.WriteLine();
+                                pcwin++;
+
+                            }
+                            else
+                            {
+                                Console.WriteLine("Computer's choice is... paper");
+                                Console.WriteLine("You won!");
+                                if (wagerEnabling)
+                                {
+                                    engbalance += 10;
+                                    Console.WriteLine("You won 10$!");
+                                }
+                                Console.WriteLine();
+                                mywin++;
+                            }
+                            break;
+                        case "shop":
+                            Console.Clear();
+                            Console.WriteLine("Shop is under development");
+                            Thread.Sleep(2000);
+                            Console.Clear();
+                            break;
+                        case "exit":
+                            Console.Clear();
+                            Console.WriteLine("Exiting in 5 seconds...\n");
+                            Console.WriteLine($"Computer wins: {pcwin}");
+                            Console.WriteLine($"Your wins: {mywin}");
+                            Console.WriteLine($"Ties: {ties}");
+                            Thread.Sleep(5000);
+                            System.Environment.Exit(0);
+                            run = false;
+                            break;
+                        default:
+                            Console.Clear();
+                            Console.WriteLine("The computer couldn't understand the choice...");
                             Console.WriteLine();
-                            mywin++;
-                        }
-                        break;
-                    case "shop":
-                        Console.Clear();
-                        Console.WriteLine("Shop is under development");
-                        Thread.Sleep(2000);
-                        Console.Clear();
-                        break;
-                    case "exit":
-                        Console.Clear();
-                        Console.WriteLine("Exiting in 5 seconds...\n");
-                        Console.WriteLine($"Computer wins: {pcwin}");
-                        Console.WriteLine($"Your wins: {mywin}");
-                        Console.WriteLine($"Ties: {ties}");
-                        Thread.Sleep(5000);
-                        System.Environment.Exit(0);
-                        run = false;
-                        break;
-                    default:
-                        Console.Clear();
-                        Console.WriteLine("The computer couldn't understand the choice...");
-                        Console.WriteLine();
-                        break;
+                            break;
+                    }
                 }
+                
 
             }
         }
         static void hungarian(int hunbalance = 0)
         {
             bool run = true;
-            bool wagerEnabling = hunbalance > 0; // nem teljesen működik
+            bool wagerEnabling = hunbalance > 0;
             List<string> rpslist = new List<string> { "kő", "papír", "olló", "bolt", "kilépés" };
             Random randomnumber = new Random();
             int pcwin = 0;
@@ -322,170 +332,179 @@ namespace rpsgame
 
             while (run)
             {
-                Console.WriteLine("1. Kő");
-                Console.WriteLine("2. Papír");
-                Console.WriteLine("3. Olló");
-                Console.WriteLine();
-                Console.WriteLine("4. Bolt");
-                Console.WriteLine("5. Kilépés");
-                Console.WriteLine();
-                if (hunbalance > 0)
+                if (wagerEnabling && hunbalance <= 0)
                 {
-                    Console.WriteLine($"A jelenlegi egyenleged: {hunbalance}ft");
-                }
-                Console.Write("Kérlek válasz egy opciót (a szót is be lehet írni): ");
-                string option = Console.ReadLine();
+                    Console.Clear();
+                    Console.WriteLine("Elfogyott a pénzed!");
+                    Thread.Sleep(3000);
+                    System.Environment.Exit(0);
+                } else
+                {
+                    Console.WriteLine("1. Kő");
+                    Console.WriteLine("2. Papír");
+                    Console.WriteLine("3. Olló");
+                    Console.WriteLine();
+                    Console.WriteLine("4. Bolt");
+                    Console.WriteLine("5. Kilépés");
+                    Console.WriteLine();
+                    if (hunbalance > 0)
+                    {
+                        Console.WriteLine($"A jelenlegi egyenleged: {hunbalance}ft");
+                    }
+                    Console.Write("Kérlek válasz egy opciót (a szót is be lehet írni): ");
+                    string option = Console.ReadLine();
 
-                if (option == "1")
-                {
-                    option = "kő";
-                }
-                else if (option == "2")
-                {
-                    option = "papír";
-                }
-                else if (option == "3")
-                {
-                    option = "olló";
-                }
-                else if (option == "4")
-                {
-                    option = "bolt";
-                }
-                else if (option == "5")
-                {
-                    option = "kilépés";
-                }
+                    if (option == "1")
+                    {
+                        option = "kő";
+                    }
+                    else if (option == "2")
+                    {
+                        option = "papír";
+                    }
+                    else if (option == "3")
+                    {
+                        option = "olló";
+                    }
+                    else if (option == "4")
+                    {
+                        option = "bolt";
+                    }
+                    else if (option == "5")
+                    {
+                        option = "kilépés";
+                    }
 
-                switch (option.ToLower())
-                {
-                    case "kő":
-                        Console.Clear();
-                        int choice = randomnumber.Next(0, 3);
-                        if (option == rpslist[choice])
-                        {
-                            Console.WriteLine("A gép válasza... kő");
-                            Console.WriteLine("Döntetlen!");
-                            Console.WriteLine();
-                            ties++;
-                        }
-                        else if (rpslist[choice] == "papír")
-                        {
-                            Console.WriteLine("A gép válasza... papír");
-                            Console.WriteLine("A gép nyert!");
-                            if (wagerEnabling)
+                    switch (option.ToLower())
+                    {
+                        case "kő":
+                            Console.Clear();
+                            int choice = randomnumber.Next(0, 3);
+                            if (option == rpslist[choice])
                             {
-                                Console.WriteLine("Vesztettél 500 forintot!");
-                                hunbalance -= 500;
+                                Console.WriteLine("A gép válasza... kő");
+                                Console.WriteLine("Döntetlen!");
+                                Console.WriteLine();
+                                ties++;
                             }
-                            Console.WriteLine();
-                            pcwin++;
-                        }
-                        else
-                        {
-                            Console.WriteLine("A gép válasza... olló");
-                            Console.WriteLine("Te nyertél!");
-                            if (wagerEnabling)
+                            else if (rpslist[choice] == "papír")
                             {
-                                Console.WriteLine("Nyertél 500 forintot!");
-                                hunbalance += 500;
+                                Console.WriteLine("A gép válasza... papír");
+                                Console.WriteLine("A gép nyert!");
+                                if (wagerEnabling)
+                                {
+                                    Console.WriteLine("Vesztettél 500 forintot!");
+                                    hunbalance -= 500;
+                                }
+                                Console.WriteLine();
+                                pcwin++;
                             }
-                            Console.WriteLine();
-                            mywin++;
-                        }
-                        break;
-                    case "papír":
-                        Console.Clear();
-                        int choice2 = randomnumber.Next(0, 3);
-                        if (option == rpslist[choice2])
-                        {
-                            Console.WriteLine("A gép válasza... papír");
-                            Console.WriteLine("Döntetlen!");
-                            Console.WriteLine();
-                            ties++;
-                        }
-                        else if (rpslist[choice2] == "olló")
-                        {
-                            Console.WriteLine("A gép válasza... olló");
-                            Console.WriteLine("A gép nyert!");
-                            if (wagerEnabling)
+                            else
                             {
-                                Console.WriteLine("Vesztettél 500 forintot!");
-                                hunbalance -= 500;
+                                Console.WriteLine("A gép válasza... olló");
+                                Console.WriteLine("Te nyertél!");
+                                if (wagerEnabling)
+                                {
+                                    Console.WriteLine("Nyertél 500 forintot!");
+                                    hunbalance += 500;
+                                }
+                                Console.WriteLine();
+                                mywin++;
                             }
-                            Console.WriteLine();
-                            pcwin++;
-                        }
-                        else
-                        {
-                            Console.WriteLine("A gép válasza... kő");
-                            Console.WriteLine("Te nyertél!");
-                            if (wagerEnabling)
+                            break;
+                        case "papír":
+                            Console.Clear();
+                            int choice2 = randomnumber.Next(0, 3);
+                            if (option == rpslist[choice2])
                             {
-                                Console.WriteLine("Nyertél 500 forintot!");
-                                hunbalance += 500;
+                                Console.WriteLine("A gép válasza... papír");
+                                Console.WriteLine("Döntetlen!");
+                                Console.WriteLine();
+                                ties++;
                             }
-                            Console.WriteLine();
-                            mywin++;
-                        }
-                        break;
-                    case "olló":
-                        Console.Clear();
-                        int choice3 = randomnumber.Next(0, 3);
-                        if (option == rpslist[choice3])
-                        {
-                            Console.WriteLine("A gép válasza... olló");
-                            Console.WriteLine("Döntetlen!");
-                            Console.WriteLine();
-                            ties++;
-                        }
-                        else if (rpslist[choice3] == "kő")
-                        {
-                            Console.WriteLine("A gép válasza... kő");
-                            Console.WriteLine("A gép nyert!");
-                            if (wagerEnabling)
+                            else if (rpslist[choice2] == "olló")
                             {
-                                Console.WriteLine("Vesztettél 500 forintot!");
-                                hunbalance -= 500;
+                                Console.WriteLine("A gép válasza... olló");
+                                Console.WriteLine("A gép nyert!");
+                                if (wagerEnabling)
+                                {
+                                    Console.WriteLine("Vesztettél 500 forintot!");
+                                    hunbalance -= 500;
+                                }
+                                Console.WriteLine();
+                                pcwin++;
                             }
-                            Console.WriteLine();
-                            pcwin++;
-                        }
-                        else
-                        {
-                            Console.WriteLine("A gép válasza... papír");
-                            Console.WriteLine("Te nyertél!");
-                            if (wagerEnabling)
+                            else
                             {
-                                Console.WriteLine("Nyertél 500 forintot!");
-                                hunbalance += 500;
+                                Console.WriteLine("A gép válasza... kő");
+                                Console.WriteLine("Te nyertél!");
+                                if (wagerEnabling)
+                                {
+                                    Console.WriteLine("Nyertél 500 forintot!");
+                                    hunbalance += 500;
+                                }
+                                Console.WriteLine();
+                                mywin++;
                             }
+                            break;
+                        case "olló":
+                            Console.Clear();
+                            int choice3 = randomnumber.Next(0, 3);
+                            if (option == rpslist[choice3])
+                            {
+                                Console.WriteLine("A gép válasza... olló");
+                                Console.WriteLine("Döntetlen!");
+                                Console.WriteLine();
+                                ties++;
+                            }
+                            else if (rpslist[choice3] == "kő")
+                            {
+                                Console.WriteLine("A gép válasza... kő");
+                                Console.WriteLine("A gép nyert!");
+                                if (wagerEnabling)
+                                {
+                                    Console.WriteLine("Vesztettél 500 forintot!");
+                                    hunbalance -= 500;
+                                }
+                                Console.WriteLine();
+                                pcwin++;
+                            }
+                            else
+                            {
+                                Console.WriteLine("A gép válasza... papír");
+                                Console.WriteLine("Te nyertél!");
+                                if (wagerEnabling)
+                                {
+                                    Console.WriteLine("Nyertél 500 forintot!");
+                                    hunbalance += 500;
+                                }
+                                Console.WriteLine();
+                                mywin++;
+                            }
+                            break;
+                        case "bolt":
+                            Console.Clear();
+                            Console.WriteLine("A bolt fejlesztés alatt áll...");
+                            Thread.Sleep(1000);
+                            Console.Clear();
+                            break;
+                        case "kilépés":
+                            Console.Clear();
+                            Console.WriteLine("Kilépés 5 másodperc múlva...\n");
                             Console.WriteLine();
-                            mywin++;
-                        }
-                        break;
-                    case "bolt":
-                        Console.Clear();
-                        Console.WriteLine("A bolt fejlesztés alatt áll...");
-                        Thread.Sleep(1000);
-                        Console.Clear();
-                        break;
-                    case "kilépés":
-                        Console.Clear();
-                        Console.WriteLine("Kilépés 5 másodperc múlva...\n");
-                        Console.WriteLine();
-                        Console.WriteLine($"A gép ennyiszer nyert: {pcwin}");
-                        Console.WriteLine($"Te ennyiszer nyertél: {mywin}");
-                        Console.WriteLine($"Döntetlenek: {ties}");
-                        Thread.Sleep(5000);
-                        System.Environment.Exit(0);
-                        run = false;
-                        break;
-                    default:
-                        Console.Clear();
-                        Console.WriteLine("A gép nem tudta értelmezni a mondanivalód...");
-                        Console.WriteLine();
-                        break;
+                            Console.WriteLine($"A gép ennyiszer nyert: {pcwin}");
+                            Console.WriteLine($"Te ennyiszer nyertél: {mywin}");
+                            Console.WriteLine($"Döntetlenek: {ties}");
+                            Thread.Sleep(5000);
+                            System.Environment.Exit(0);
+                            run = false;
+                            break;
+                        default:
+                            Console.Clear();
+                            Console.WriteLine("A gép nem tudta értelmezni a mondanivalód...");
+                            Console.WriteLine();
+                            break;
+                    }
                 }
 
             }
