@@ -26,7 +26,7 @@ namespace rpsgame
         }
         static string wantToWagerEng()
         {
-            Console.WriteLine("Do you want to play with money balance? (you start with 100$ and you win money by winning against the machine)\nCURRENTLY WAGER IS ONLY AVAILABLE IN ENGLISH!\n");
+            Console.WriteLine("Do you want to play with money balance? (you start with 100$ and you win money by winning against the machine)\n");
             Console.WriteLine("1. Yes");
             Console.WriteLine("2. No");
             Console.WriteLine();
@@ -62,7 +62,7 @@ namespace rpsgame
         }
         static string languageSelector()
         {
-            Console.WriteLine("Welcome to Rock, Paper, Scissors!\n");
+            Console.WriteLine("Welcome to Rock, Paper, Scissors!\nCURRENTLY WAGER IS ONLY AVAILABLE IN ENGLISH!\n");
             Console.WriteLine("1. English");
             Console.WriteLine("2. Hungarian");
             Console.WriteLine();
@@ -107,7 +107,9 @@ namespace rpsgame
                 Console.WriteLine("1. Rock");
                 Console.WriteLine("2. Paper");
                 Console.WriteLine("3. Scissors");
-                Console.WriteLine("4. Exit");
+                Console.WriteLine();
+                Console.WriteLine("4. Shop (SOON)");
+                Console.WriteLine("5. Exit");
                 if (engbalance != 0)
                 {
                     Console.WriteLine($"Your current balance: {engbalance}$");
@@ -129,6 +131,10 @@ namespace rpsgame
                     option = "scissors";
                 }
                 else if (option == "4")
+                {
+                    option = "shop";
+                }
+                else if (option == "5")
                 {
                     option = "exit";
                 }
@@ -243,6 +249,12 @@ namespace rpsgame
                             Console.WriteLine();
                             mywin++;
                         }
+                        break;
+                    case "shop":
+                        Console.Clear();
+                        Console.WriteLine("Shop is under development");
+                        Thread.Sleep(2000);
+                        Console.Clear();
                         break;
                     case "exit":
                         Console.Clear();
